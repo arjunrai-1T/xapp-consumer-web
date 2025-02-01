@@ -24,6 +24,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import VideoCard from '../components/VideoCard/VideoCard.tsx';
+import { Video } from '../types/video.ts';
 
 const drawerWidth = 240; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
@@ -128,6 +130,26 @@ export default function MiniDrawer() {
     setOpen(!open); // Toggle drawer state
   };
 
+  const videos: Video[] = [
+    {
+      id: 1,
+      title: 'Video 1',
+      thumbnail: 'https://via.placeholder.com/345x140',
+      views: '1.2M',
+      timestamp: '2 days ago',
+      videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4', // Add video URL
+    },
+    {
+      id: 2,
+      title: 'Video 2',
+      thumbnail: 'https://via.placeholder.com/345x140',
+      views: '800K',
+      timestamp: '5 days ago',
+      videoUrl: 'https://www.w3schools.com/html/mov_bbb.mp4', // Add video URL
+    },
+    // Add more videos here
+  ];
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -231,6 +253,11 @@ export default function MiniDrawer() {
         <Typography sx={{ marginBottom: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
         </Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', padding: '20px' }}>
+          {videos.map((video) => (
+            <VideoCard key={video.id} video={video} />
+          ))}
+        </Box>
       </Box>
     </Box>
   );
