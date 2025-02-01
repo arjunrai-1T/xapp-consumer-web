@@ -60,6 +60,7 @@ const AppBar = styled(MuiAppBar, {
   backgroundColor: '#ffffff', // White background
   color: '#000000', // Black text color
   boxShadow: 'none', // Removed shadow
+  borderBottom: `0.5px solid ${theme.palette.grey[300]}`,
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
