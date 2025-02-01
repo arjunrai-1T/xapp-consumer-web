@@ -57,6 +57,9 @@ const AppBar = styled(MuiAppBar, {
   zIndex: theme.zIndex.drawer + 1,
   position: 'fixed', // Keep AppBar fixed at the top
   width: '100%', // Make AppBar full width
+  backgroundColor: '#ffffff', // White background
+  color: '#000000', // Black text color
+  boxShadow: 'none', // Removed shadow
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
