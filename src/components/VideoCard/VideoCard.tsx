@@ -1,55 +1,48 @@
-import React, { useState } from 'react';
-import { Card, CardMedia, CardContent, Typography, IconButton } from '@mui/material';
-import { Video } from '../../types/video';
-import { MediaPlayer, MediaProvider, Poster } from '@vidstack/react';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import './VideoCard.css';
+import React from 'react';
+import '@vidstack/react/player/styles/default/theme.css';
+import '@vidstack/react/player/styles/default/layouts/audio.css';
+import '@vidstack/react/player/styles/default/layouts/video.css';
 
-interface VideoCardProps {
-  video: Video;
-}
+import { MediaPlayer, MediaProvider, Poster, Track } from "@vidstack/react";
+import { DefaultVideoLayout, defaultLayoutIcons } from '@vidstack/react/player/layouts/default';
 
-const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
-  const [isPlayerOpen, setIsPlayerOpen] = useState(false);
-
-  const handlePlayClick = () => {
-    setIsPlayerOpen(true);
-  };
+const VideoPlayer: React.FC = () => {
+  // Define text tracks (optional subtitles/captions)
+  const textTracks = [
+    {
+      src: 'https://files.vidstack.io/sprite-fight/subtitles-en.vtt',
+      kind: 'subtitles',
+      srcLang: 'en',
+      label: 'English',
+      default: true,
+    },
+  ];
 
   return (
-    <>
-      <Card sx={{ maxWidth: 345, margin: '10px' }}>
-        <CardMedia component="img" height="140" image={video.thumbnail} alt={video.title} />
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            {video.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {video.views} views • {video.timestamp}
-          </Typography>
-        </CardContent>
-        <IconButton
-          onClick={handlePlayClick}
-          sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-        >
-          <PlayArrowIcon sx={{ fontSize: 50, color: 'white' }} />
-        </IconButton>
-      </Card>
+    <MediaPlayer
+      src="https://files.vidstack.io/sprite-fight/720p.mp4"
+      viewType="video"
+      streamType="on-demand"
+      logLevel="warn"
+      crossOrigin="anonymous"
+      playsInline
+      title="Sprite Fight"
+      poster="https://files.vidstack.io/sprite-fight/poster.webp"
+    >
+      <MediaProvider>
+        <Poster className="vds-poster" />
+        {textTracks.map(track => (
+          <Track {...track} key={track.src} />
+        ))}
+      </MediaProvider>
 
-      {isPlayerOpen && (
-        <div className="video-player-modal">
-          <div className="video-player-content">
-            <MediaPlayer title={video.title} src={video.videoUrl}>
-              <MediaProvider>
-                <Poster src={video.thumbnail} alt={video.title} />
-              </MediaProvider>
-            </MediaPlayer>
-            <button onClick={() => setIsPlayerOpen(false)}>Close</button>
-          </div>
-        </div>
-      )}
-    </>
+      <DefaultVideoLayout
+        thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+        icons={defaultLayoutIcons}
+      />
+    </MediaPlayer>
   );
 };
 
-export default VideoCard;
+export default VideoPlayer;
+
