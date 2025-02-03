@@ -10,8 +10,13 @@ import {
   Grid,
   Container,
   Grid2,
+  Box,
+  Avatar,
 } from "@mui/material";
 import VideoPlayer from "./VideoPlayer.tsx";
+import { wrap } from "module";
+import AppleIcon from '@mui/icons-material/Apple';
+import { green } from "@mui/material/colors";
 
 interface Video {
   id: string;
@@ -75,47 +80,92 @@ const videos: Video[] = [
   }
 ];
 
-const VideoList: React.FC = () => {
-  const [selectedVideo, setSelectedVideo] = useState<Video | null>(videos[0]);
-
+const VideoList = ({ drawerOpenStatus }) => {
   return (
-    <Container sx={{ py: 4 }}>
-      {/* Video Player Section */}
-      {/* {selectedVideo && (
-        <VideoPlayer key={selectedVideo.id} videoSrc={selectedVideo.src} poster={selectedVideo.thumbnail} />
-      )} */}
+  
+      <Grid2
+        container
+        spacing={2}
+        sx={{
+          justifyContent: 'flex-start',
+          alignItems: 'center'
+        }}
+      >
+        {/* Loop through videos */}
+        {videos.map((video) => (
+          <Grid2
+            key={video.id}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              mb: 2, // Add margin bottom for spacing between cards
+            }}
+          >
+            <ListItem disablePadding sx={{ width: '100%' }}>
+              <Card sx={{ width: '100%' , backgroundColor: 'transparent', boxShadow: 'none'}}>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    sx={{
+                      width: drawerOpenStatus ? 400 : 340, // Change width depending on the drawer state
+                      height: drawerOpenStatus ? 230 : 200, // Change height depending on the drawer state
+                      transition: 'all 0.3s ease', // Smooth transition when resizing
+                    }}
+                    image={video.thumbnail}
+                    alt={video.title}
+                  />
+                  {/* <CardContent>
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      {video.title}
+                    </Typography>
+                  </CardContent> */}
+                  {/* <Box display="flex" justifyContent="center" p={2}>
+                    <div>Content</div>
+                  </Box> */}
 
-      <Typography variant="h5" sx={{ mt: 4, mb: 2 }}>
-        Video List
-      </Typography>
+                  <CardContent sx={{ padding: 0.8 }}>
+                    <Grid2 container alignItems="flex-start" spacing={1} justifyContent="flex-start">
+                      <Grid2 sx={{ flexShrink: 0 }}>
+                        <Avatar sx={{ bgcolor: green[500],width: 30 ,height: 30 }} variant="rounded">
+                          <AppleIcon />
+                        </Avatar>
+                      </Grid2>
+                      <Grid2 sx={{ flexGrow: 1 }} container direction="column" alignItems="flex-start" spacing={0} justifyContent="flex-start" gap={0}>
+                          <Typography 
+                              variant="subtitle1" 
+                              fontWeight={"bold"}
+                              noWrap
+                            >
+                              {"Dominant Action: Mumbai Local Train..."}
+                            </Typography>
+                            {/* <Typography 
+                              variant="subtitle1" 
+                              fontWeight={"bold"}
+                              noWrap
+                            >
+                              {"Train Arrivals & Departures at..."}
+                            </Typography> */}
+                            <Typography variant="body2" color="text.secondary" noWrap>
+                              {"Connecting Dots by Unacademy"}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {"9.2K"} views • {"6 hours ago"}
+                            </Typography>
+                      </Grid2>
+                    </Grid2>
+                  </CardContent>
 
-      <List>
-        <Grid2 container spacing={2}>
-          {videos.map((video) => (
-            <Grid item xs={12} sm={6} md={4} key={video.id}>
-              <ListItem disablePadding>
-                <Card sx={{ width: "100%" }}>
-                  <CardActionArea onClick={() => setSelectedVideo(video)}>
-                    <CardMedia
-                      component="img"
-                      height="180"
-                      image={video.thumbnail}
-                      alt={video.title}
-                    />
-                    <CardContent>
-                      <Typography variant="subtitle1" fontWeight="bold">
-                        {video.title}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </ListItem>
-            </Grid>
-          ))}
-        </Grid2>
-      </List>
-    </Container>
+                </CardActionArea>
+              </Card>
+            </ListItem>
+          </Grid2>
+        ))}
+      </Grid2>
   );
 };
 
 export default VideoList;
+
+// {"Dominant Action: Mumbai Local Train Arrivals & Departures at"}
+
+

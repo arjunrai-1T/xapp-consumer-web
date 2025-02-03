@@ -9,7 +9,7 @@ import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 
 const Home: React.FC = () => {
 
-        const drawerWidth = 240;
+        const drawerWidth = 100;
 
         const [open, setOpen] = React.useState(false);
         

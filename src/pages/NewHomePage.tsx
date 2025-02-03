@@ -29,7 +29,7 @@ import { Video } from '../types/video.ts';
 import VideoPlayer from '../components/VideoCard/VideoPlayer.tsx';
 import VideoList from '../components/VideoCard/VideoList.tsx';
 
-const drawerWidth = 240; // Expanded drawer width
+const drawerWidth = 200; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -229,15 +229,15 @@ export default function MiniDrawer() {
       </Drawer>
 
       {/* Main Content */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: '0px' }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 2, marginTop: '0px' }}>
         <DrawerHeader />
         {/* <Typography sx={{ marginBottom: 2 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+        </Typography>
+        <Typography sx={{ marginBottom: 2 }}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
         </Typography> */}
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', padding: '1px' }}>
-          {/* <VideoPlayer videoSrc={""} poster={""}/> */}
-          <VideoList/>
-        </Box>
+        <VideoList drawerOpenStatus={open}/>
       </Box>
     </Box>
   );
