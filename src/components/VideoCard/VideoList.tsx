@@ -85,7 +85,7 @@ const VideoList = ({ drawerOpenStatus }) => {
   
       <Grid2
         container
-        spacing={2}
+        spacing={drawerOpenStatus? 4.5:2.5}
         sx={{
           justifyContent: 'flex-start',
           alignItems: 'center'
@@ -102,49 +102,44 @@ const VideoList = ({ drawerOpenStatus }) => {
             }}
           >
             <ListItem disablePadding sx={{ width: '100%' }}>
-              <Card sx={{ width: '100%' , backgroundColor: 'transparent', boxShadow: 'none'}}>
+              <Card sx={{ width: drawerOpenStatus ? 400 : 339 , backgroundColor: 'transparent', boxShadow: 'none'}}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
                     sx={{
-                      width: drawerOpenStatus ? 400 : 340, // Change width depending on the drawer state
+                      width: drawerOpenStatus ? 400 : 339, // Change width depending on the drawer state
                       height: drawerOpenStatus ? 230 : 200, // Change height depending on the drawer state
                       transition: 'all 0.3s ease', // Smooth transition when resizing
                     }}
                     image={video.thumbnail}
                     alt={video.title}
                   />
-                  {/* <CardContent>
-                    <Typography variant="subtitle1" fontWeight="bold">
-                      {video.title}
-                    </Typography>
-                  </CardContent> */}
-                  {/* <Box display="flex" justifyContent="center" p={2}>
-                    <div>Content</div>
-                  </Box> */}
-
+                  
                   <CardContent sx={{ padding: 0.8 }}>
-                    <Grid2 container alignItems="flex-start" spacing={1} justifyContent="flex-start">
-                      <Grid2 sx={{ flexShrink: 0 }}>
+                    <Grid2 container alignItems="flex-start" spacing={1.5} justifyContent="flex-start" direction="row" flexWrap={"nowrap"}>
+                      <Grid2 sx={{ flexShrink: 0,marginTop: 0.5 }}>
                         <Avatar sx={{ bgcolor: green[500],width: 30 ,height: 30 }} variant="rounded">
                           <AppleIcon />
                         </Avatar>
                       </Grid2>
-                      <Grid2 sx={{ flexGrow: 1 }} container direction="column" alignItems="flex-start" spacing={0} justifyContent="flex-start" gap={0}>
+                      <Grid2 sx={{ flexGrow: 0 }} container direction="column" alignItems="flex-start" spacing={0} justifyContent="flex-start" gap={0}>
                           <Typography 
-                              variant="subtitle1" 
+                              variant="body1" 
                               fontWeight={"bold"}
-                              noWrap
+                              fontSize={14}
+                              flexWrap={"wrap"}
+                              //dangerouslySetInnerHTML={{ __html: "Mujib Bahini’s Weapon Training Begins |<br> Bangladesh on the Brink of Civil War" }}
                             >
-                              {"Dominant Action: Mumbai Local Train..."}
+                              {"Mujib Bahini’s Weapon Training Begins |"}
                             </Typography>
-                            {/* <Typography 
-                              variant="subtitle1" 
+                            <Typography 
+                              variant="body1" 
                               fontWeight={"bold"}
-                              noWrap
+                              fontSize={14}
+                              flexWrap={"wrap"}
                             >
-                              {"Train Arrivals & Departures at..."}
-                            </Typography> */}
+                              {"Bangladesh on the Brink of Civil War"}
+                            </Typography>
                             <Typography variant="body2" color="text.secondary" noWrap>
                               {"Connecting Dots by Unacademy"}
                             </Typography>
@@ -167,5 +162,6 @@ const VideoList = ({ drawerOpenStatus }) => {
 export default VideoList;
 
 // {"Dominant Action: Mumbai Local Train Arrivals & Departures at"}
+//width: '100%'
 
 
