@@ -7,8 +7,6 @@ import {
   Typography,
   List,
   ListItem,
-  Grid,
-  Container,
   Grid2,
   Box,
   Avatar,
@@ -161,7 +159,5 @@ const VideoList = ({ drawerOpenStatus }) => {
 
 export default VideoList;
 
-// {"Dominant Action: Mumbai Local Train Arrivals & Departures at"}
-//width: '100%'
 
 

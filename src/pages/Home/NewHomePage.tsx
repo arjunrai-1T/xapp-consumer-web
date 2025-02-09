@@ -24,10 +24,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import VideoCard from '../components/VideoCard/VideoCard.tsx';
-import { Video } from '../types/video.ts';
-import VideoPlayer from '../components/VideoCard/VideoPlayer.tsx';
-import VideoList from '../components/VideoCard/VideoList.tsx';
+import VideoCard from '../../components/VideoCard/VideoCard.tsx';
+import { Video } from '../../types/video.ts';
+import VideoPlayer from '../../components/VideoCard/VideoPlayer.tsx';
+import VideoList from '../../components/VideoCard/VideoList.tsx';
+import VideoViewPage from '../VideoSoloView/VideoViewPage.tsx';
 
 const drawerWidth = 200; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
@@ -111,8 +112,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     width: '100%',
   },
 }));
-
-export default function MiniDrawer() {
+const DashboardHome=()=> {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -229,16 +229,13 @@ export default function MiniDrawer() {
       </Drawer>
 
       {/* Main Content */}
-      <Box component="main" sx={{ flexGrow: 1, p: 2.5, marginTop: '0px',alignContent: "center" }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 1.5, marginTop: '0px',alignContent: "center" }}>
         <DrawerHeader />
-        {/* <Typography sx={{ marginBottom: 2 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-        </Typography>
-        <Typography sx={{ marginBottom: 2 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-        </Typography> */}
-        <VideoList drawerOpenStatus={open}/>
+        {/* <VideoList drawerOpenStatus={open}/> */}
+        <VideoViewPage drawerOpenStatus={open} video={""} />
       </Box>
     </Box>
   );
 }
+
+export default DashboardHome;

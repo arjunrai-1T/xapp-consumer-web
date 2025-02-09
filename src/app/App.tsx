@@ -1,15 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from '../pages/Home.tsx';
 import './App.css';
-import DashboardLayoutBasic from '../pages/DashBoardHome.tsx';
-import HomePage from '../pages/NewHomePage.tsx';
+import DashboardHome from '../pages/Home/NewHomePage.tsx';
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<DashboardHome />} />
       </Routes>
     </Router>
   );
