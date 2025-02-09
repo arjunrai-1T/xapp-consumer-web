@@ -57,20 +57,18 @@ const VideoPlayer = (props:VideoPlayerProps) => {
   //   { src: 'https://files.vidstack.io/sprite-fight/dash/stream.mpd', type: 'video/mpd' },
   //   { src: 'https://files.vidstack.io/agent-327/720p.mp4', type: 'video/mp4' }
   // ];
-  const [src, setSrc] = useState(0);
+  // const [src, setSrc] = useState(0);
 
-  function prevVideo() {
-    setSrc((n) => Math.max(0, n - 1));
-  }
+  // function prevVideo() {
+  //   setSrc((n) => Math.max(0, n - 1));
+  // }
 
-  function nextVideo() {
-    setSrc((n) => Math.min(videosrc.length - 1, n + 1));
-  }
+  // function nextVideo() {
+  //   setSrc((n) => Math.min(videosrc.length - 1, n + 1));
+  // }
 
-  const vidsrc=[
-    'https://files.vidstack.io/sprite-fight/dash/stream.mpd',
-    'https://files.vidstack.io/agent-327/720p.mp4'
-  ];
+  const vidsrc="https://files.vidstack.io/sprite-fight/dash/stream.mpd";
+  
   const [videosrc, setVideosrc] = React.useState(vidsrc); 
   
   const videoConfig: VideoPlayerConfig = {
@@ -214,10 +212,20 @@ const VideoPlayer = (props:VideoPlayerProps) => {
     console.log("handleSourceChange")
   };
 
+  const handleCanPlay = () => {
+    console.log("handleCanPlay")
+    const button = document.getElementById('autoClickButton');
+    playerRef.current?.play().then(() => {
+    }).catch((error) => {
+      console.error('Error playing video:', error);
+    });
+  };
+
   React.useEffect(() => {
 
     if (playerRef?.current) {
       playerRef.current.addEventListener('loadstart', handleSourceChange);
+      playerRef?.current?.addEventListener('can-play', handleCanPlay);
     }
 
     // Function to log current time
@@ -226,20 +234,13 @@ const VideoPlayer = (props:VideoPlayerProps) => {
         console.log(playerRef?.current?.currentTime); // Print current playtime
         if (playerRef?.current?.currentTime >= 5) {
           console.log('Video has reached 60 seconds or more');
-          //setVideosrc(("https://files.vidstack.io/agent-327/720p.mp4");
+          setVideosrc("https://files.vidstack.io/agent-327/720p.mp4");
         }
       }
     };
     // Set an interval to log playtime every second
     const intervalId = setInterval(logPlaytime, 1000);
 
-    const handleCanPlay = () => {
-      console.log("handleCanPlay")
-      // playerRef.current?.play();
-    };
-
-    playerRef?.current?.addEventListener('can-play', handleCanPlay);
-    
     // Cleanup function to clear the interval when component unmounts
     return () => {
       clearInterval(intervalId);
@@ -266,7 +267,14 @@ const VideoPlayer = (props:VideoPlayerProps) => {
   //   });
   // }, []);
 
-
+  // Simulate a button click after the component mounts
+  // React.useEffect(() => {
+  //   const button = document.getElementById('autoClickButton');
+  //   if (button) {
+  //     button.click();
+  //   }
+  // }, []);
+  
   return (
     <Card sx={{ width: props.isFullWidth? '62%': '100%',mx: 'auto', boxShadow: 0, borderRadius: 0, overflow: 'hidden',backgroundColor: 'transparent'}}>
       <MediaPlayer

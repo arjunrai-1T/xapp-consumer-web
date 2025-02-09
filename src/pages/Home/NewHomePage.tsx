@@ -29,6 +29,12 @@ import { Video } from '../../types/video.ts';
 import VideoPlayer from '../../components/VideoCard/VideoPlayer.tsx';
 import VideoList from '../../components/VideoCard/VideoList.tsx';
 import VideoViewPage from '../VideoSoloView/VideoViewPage.tsx';
+import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+
+import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
+import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const drawerWidth = 200; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
@@ -114,6 +120,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 const DashboardHome=()=> {
   const theme = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -130,6 +138,24 @@ const DashboardHome=()=> {
 
   const handleDrawerToggle = () => {
     setOpen(!open); // Toggle drawer state
+  };
+
+  // Function to handle clicks
+  const handleClickDrawerIcon = (menuname: string) => {
+    console.log(`You clicked on ${menuname}`);
+    switch (menuname) {
+      case 'DashBoard':
+        navigate('/'); 
+        break;
+      case 'Video List':
+          navigate('/videolist'); 
+          break;
+      case 'Video Solo':
+            navigate('/videoview'); 
+            break;
+      default:
+        return; 
+    }
   };
 
   return (
@@ -214,11 +240,24 @@ const DashboardHome=()=> {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text) => (
+          {['DashBoard', 'Video List', 'Video Solo', 'Channel'].map((text) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton sx={{ minHeight: 48, px: 2.5, justifyContent: open ? 'initial' : 'center' }}>
+              <ListItemButton sx={{ minHeight: 48, px: 2.5, justifyContent: open ? 'initial' : 'center' }} onClick={() => handleClickDrawerIcon(text)}>
                 <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center', mr: open ? 3 : 'auto' }}>
-                  {text === 'Inbox' ? <InboxIcon /> : <MailIcon />}
+                  {(() => {
+                    switch (text) {
+                      case 'DashBoard':
+                        return <DashboardIcon />; 
+                      case 'Video List':
+                        return <VideoLibraryIcon/>; 
+                      case 'Video Solo':
+                          return <OndemandVideoIcon  />; 
+                      case 'Channel':
+                            return <VideoCameraFrontIcon  />; 
+                      default:
+                       break;
+                    }
+                  })()}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -231,8 +270,16 @@ const DashboardHome=()=> {
       {/* Main Content */}
       <Box component="main" sx={{ flexGrow: 1, p: 1.5, marginTop: '0px',alignContent: "center" }}>
         <DrawerHeader />
-        {/* <VideoList drawerOpenStatus={open}/> */}
-        <VideoViewPage drawerOpenStatus={open} video={""} />
+        {(() => {
+        switch (location.pathname) {
+          case '/videolist':
+            return <VideoList drawerOpenStatus={open} />; // Render VideoList for "/videolist" route
+          case '/videoview':
+            return <VideoViewPage drawerOpenStatus={open} video={""}  />; // Render VideoViewPage for "/videoview" route
+          default:
+            return <div>Welcome to the Dashboard</div>; // Default view (could be the Dashboard or any fallback)
+        }
+      })()}
       </Box>
     </Box>
   );
