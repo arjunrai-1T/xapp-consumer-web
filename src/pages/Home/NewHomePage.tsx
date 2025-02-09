@@ -35,6 +35,7 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import { blue, red, yellow } from '@mui/material/colors';
 
 const drawerWidth = 200; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
@@ -247,13 +248,13 @@ const DashboardHome=()=> {
                   {(() => {
                     switch (text) {
                       case 'DashBoard':
-                        return <DashboardIcon />; 
+                        return <DashboardIcon sx={{ color: blue[500] }}/>; 
                       case 'Video List':
-                        return <VideoLibraryIcon/>; 
+                        return <VideoLibraryIcon sx={{ color: red[500] }}/>; 
                       case 'Video Solo':
-                          return <OndemandVideoIcon  />; 
+                          return <OndemandVideoIcon  sx={{ color: yellow[500] }}/>; 
                       case 'Channel':
-                            return <VideoCameraFrontIcon  />; 
+                            return <VideoCameraFrontIcon  sx={{ color: blue[500] }}/>; 
                       default:
                        break;
                     }
