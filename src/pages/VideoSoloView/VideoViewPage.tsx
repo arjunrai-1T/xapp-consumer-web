@@ -32,6 +32,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import VideoList from "../../components/VideoCard/VideoList.tsx";
+import CommentSection from "../../components/CommentSection/CommentSection.tsx";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -258,19 +259,22 @@ const VideoViewPage =({ drawerOpenStatus,video })=>{
     const [isFullWidth, setIsFullWidth] = useState(false);
 
     // Toggle the state between full width and half width for the left side grid
-    const handleToggleLayout = () => {
+    const handleToggleFullWidthLayout = () => {
       setIsFullWidth(prev => !prev);
     };
 
     return (
         <Box sx={{ flexGrow: 1,height: '100vh' }}>
 
+          {/* Show Videos-Player/Video-Live-Comments/Videos-text-Ads */}
           <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
               <Grid container  size={{ xs: 2, sm: 4, md: 12 }} spacing={2}>
-                  <Grid size={{ xs: 4, sm: 8, md: isFullWidth ? 12: 7 }} sx={{backgroundColor: isFullWidth? 'black': 'transparent',borderRadius: 2}} >
-                    <VideoPlayer videoSrc={""} poster={""} isFullWidth={isFullWidth}></VideoPlayer>
+                  {/* Show Videos Player */}
+                  <Grid size={{ xs: 4, sm: 8, md: isFullWidth ? 12: 8 }} sx={{backgroundColor: isFullWidth? 'black': 'transparent',borderRadius: 2}} >
+                    <VideoPlayer videoSrc={""} poster={""} isFullWidth={isFullWidth} handleToggleFullWidthLayout={handleToggleFullWidthLayout}></VideoPlayer>
                   </Grid>
-                  <Grid size={{ xs: 4, sm: 4, md: isFullWidth ? 4: 5 }} sx={{display: isFullWidth ? 'none' :'block'}}  >
+                  {/* Show Videos-Live-Comments or Videos-text-ads */}
+                  <Grid size={{ xs: 4, sm: 4, md: isFullWidth ? 0: 4 }} sx={{display: isFullWidth ? 'none' :'block'}}  >
                     <Card sx={{ width: '100%',height: '100%' ,backgroundColor: 'lightgreen' }}>
                       <CardContent>
                         <Typography variant="h5" gutterBottom>
@@ -285,9 +289,11 @@ const VideoViewPage =({ drawerOpenStatus,video })=>{
               </Grid>
           </Grid>
 
-          <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+          {/*Show Videos Descriptions/Comments/List of other suggesstion videos*/}
+          <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ height: '100vh' }}>
+             {/*Show Horizontal List of Videos Descriptions & Comments*/}
              <Grid size={{ xs: 2, sm: 4, md: 8 }}>
-                <Card sx={{ width: '100%',height: '100%' ,backgroundColor: 'lightcoral' }}>
+                {/* <Card sx={{ width: '100%',height: '100%' ,backgroundColor: 'lightcoral' }}>
                       <CardContent>
                         <Typography variant="h5" gutterBottom>
                           Left Box - Card Container 1
@@ -296,11 +302,12 @@ const VideoViewPage =({ drawerOpenStatus,video })=>{
                           This is a card inside the left grid. It spans across the full width of the grid in small screens.
                         </Typography>
                       </CardContent>
-                    </Card>
+                </Card> */}
+                <CommentSection />
               </Grid>
-              {/*Show Vertical List of Videos*/}
-              <Grid size={{ xs: 2, sm: 4, md: 4 }} padding={1.5} sx={{ width: '100%',height: '100%' ,backgroundColor: '' }}>
-                  <Box
+              {/*Show Horizontal List of Videos*/}
+              <Grid size={{ xs: 2, sm: 4, md: 4 }} padding={1.5} sx={{ width: '100%',height: '100vh' ,backgroundColor: '' }}>
+                  {/* <Box
                         sx={{
                           display: 'flex',
                           justifyContent: 'centre',
@@ -310,12 +317,12 @@ const VideoViewPage =({ drawerOpenStatus,video })=>{
                         <Button
                           variant="contained"
                           color="primary"
-                          onClick={handleToggleLayout}
+                          onClick={handleToggleFullWidthLayout}
                           sx={{ width: '200px' }}
                         >
                           {isFullWidth ? 'Shrink Left Side' : 'Expand Left Side'}
                         </Button>
-                  </Box>
+                  </Box> */}
                   <VideoList drawerOpenStatus={drawerOpenStatus} isVerticalList={true}/>
               </Grid>
           </Grid>

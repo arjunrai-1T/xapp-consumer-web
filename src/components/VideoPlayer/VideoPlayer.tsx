@@ -9,6 +9,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { useMediaRemote } from '@vidstack/react';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 
 export interface TextTrack {
   src: string;
@@ -49,6 +50,7 @@ interface VideoPlayerProps {
   videoSrc: string;
   poster: string;
   isFullWidth: boolean;
+  handleToggleFullWidthLayout?: ()=>void;
 }
 
 const VideoPlayer = (props:VideoPlayerProps) => {
@@ -252,6 +254,10 @@ const VideoPlayer = (props:VideoPlayerProps) => {
     //playerRef.current?.play();
   },[isPaused]);
 
+  // Function to trigger fullscreen
+  const goFullWidthScreen = () => {
+  };
+
   // Working
   // React.useEffect(() => {
   //   // Access snapshot of player state.
@@ -298,11 +304,28 @@ const VideoPlayer = (props:VideoPlayerProps) => {
           ))}
         </MediaProvider>
 
+        {/* Fullscreen button */}
+        <IconButton
+          onClick={props?.handleToggleFullWidthLayout}
+          sx={{
+            position: 'absolute',
+            top: 10,
+            right: 10,
+            zIndex: 10,
+            backgroundColor: 'rgb(40, 39, 39)',  // Background of the button
+            color: 'white',  // Icon color
+            '&:hover': { backgroundColor: 'rgba(0, 71, 249, 0.7)' },
+          }}
+        >
+          <FullscreenIcon />
+        </IconButton>
+
         <DefaultVideoLayout
           thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
           icons={defaultLayoutIcons}
         />
       </MediaPlayer>
+      
     </Card>
   );
 };
@@ -313,3 +336,4 @@ export default VideoPlayer;
 //https://files.vidstack.io/sprite-fight/dash/stream.mpd
 //https://videos.pexels.com/video-files/5192719/5192719-hd_1280_720_24fps.mp4
 //https://files.vidstack.io/agent-327/720p.mp4
+//Comment Card Width & height : 640 *102 Right Side: 584*102 Left: 40* 102
