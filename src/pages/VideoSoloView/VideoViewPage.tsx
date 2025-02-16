@@ -17,7 +17,7 @@ import {
   IconButton,
   IconButtonProps
 } from "@mui/material";
-import VideoPlayer from "../../components/VideoCard/VideoPlayer.tsx";
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer.tsx";
 import { wrap } from "module";
 import AppleIcon from '@mui/icons-material/Apple';
 import { green } from "@mui/material/colors";
@@ -31,6 +31,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import VideoList from "../../components/VideoCard/VideoList.tsx";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -286,7 +287,7 @@ const VideoViewPage =({ drawerOpenStatus,video })=>{
 
           <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
              <Grid size={{ xs: 2, sm: 4, md: 8 }}>
-                <Card sx={{ width: '100%',height: '300px' ,backgroundColor: 'lightcoral' }}>
+                <Card sx={{ width: '100%',height: '100%' ,backgroundColor: 'lightcoral' }}>
                       <CardContent>
                         <Typography variant="h5" gutterBottom>
                           Left Box - Card Container 1
@@ -297,30 +298,34 @@ const VideoViewPage =({ drawerOpenStatus,video })=>{
                       </CardContent>
                     </Card>
               </Grid>
-              <Grid size={{ xs: 2, sm: 4, md: 4 }} sx={{ width: '100%',height: '300px' ,backgroundColor: 'lightcyan' }}>
-                {/* <Item sx={{height: '800px',backgroundColor: 'lightcyan'}}>{4}</Item> */}
-                <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'centre',
-                        padding: 2
-                      }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleToggleLayout}
-                        sx={{ width: '200px' }}
+              {/*Show Vertical List of Videos*/}
+              <Grid size={{ xs: 2, sm: 4, md: 4 }} padding={1.5} sx={{ width: '100%',height: '100%' ,backgroundColor: '' }}>
+                  <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'centre',
+                          padding: 2
+                        }}
                       >
-                        {isFullWidth ? 'Shrink Left Side' : 'Expand Left Side'}
-                      </Button>
-                    </Box>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleToggleLayout}
+                          sx={{ width: '200px' }}
+                        >
+                          {isFullWidth ? 'Shrink Left Side' : 'Expand Left Side'}
+                        </Button>
+                  </Box>
+                  <VideoList drawerOpenStatus={drawerOpenStatus} isVerticalList={true}/>
               </Grid>
           </Grid>
           
       </Box>
     );
-    // return <LeftRightLayout />
 };
 
 export default VideoViewPage;
+//Vertical WHole Div width => 402
+//Vertical Video Card Size => 402 * 98
+//Vertical Video Thumbnail Size => 168 * 94
+//Card Content width =>226*98

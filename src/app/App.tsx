@@ -1,21 +1,52 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate, BrowserRouter, Navigate } from 'react-router-dom';
 import './App.css';
-import DashboardHome from '../pages/Home/NewHomePage.tsx';
 import VideoList from '../components/VideoCard/VideoList.tsx';
 import VideoViewPage from '../pages/VideoSoloView/VideoViewPage.tsx';
 import { Box, Button } from '@mui/material';
+import HomePage from '../pages/Home/HomePage.tsx';
 
 const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   
   return (
-       <BrowserRouter>
-         <Routes>
-            <Route path="/" element={<DashboardHome />} />
-            <Route path="/videolist" element={<DashboardHome />} />
-            <Route path="/videoview" element={<DashboardHome />} />
-          </Routes>
-       </BrowserRouter>
+      <BrowserRouter>
+      <Routes>
+        {/* Define the routes for the home page and video list/page */}
+        <Route
+          path="/"
+          element={isLoggedIn ? <HomePage path="/" /> : <Navigate to="/signin" />}
+        />
+        <Route
+          path="/videolist"
+          element={isLoggedIn ? <HomePage path="/videolist" /> : <Navigate to="/signin" />}
+        />
+        <Route
+          path="/videoview"
+          element={isLoggedIn ? <HomePage path="/videoview" /> : <Navigate to="/signin" />}
+        />
+        
+        {/* SignIn route for non-logged-in users */}
+        {/* <Route
+          path="/signin"
+          element={<SignInPage setIsLoggedIn={setIsLoggedIn} />}
+        /> */}
+        {/* <Route
+          path="/signup"
+          element={<SignUpPage setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route
+          path="/forgotpassword"
+          element={<ForgotPasswordPage />}
+        /> */}
+        
+        {/* Catch-all route */}
+        <Route
+          path="*"
+          element={isLoggedIn ? <HomePage path="*" /> : <Navigate to="/signin" />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

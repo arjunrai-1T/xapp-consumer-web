@@ -26,7 +26,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import VideoCard from '../../components/VideoCard/VideoCard.tsx';
 import { Video } from '../../types/video.ts';
-import VideoPlayer from '../../components/VideoCard/VideoPlayer.tsx';
+import VideoPlayer from '../../components/VideoPlayer/VideoPlayer.tsx';
 import VideoList from '../../components/VideoCard/VideoList.tsx';
 import VideoViewPage from '../VideoSoloView/VideoViewPage.tsx';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
@@ -36,6 +36,7 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { blue, red, yellow } from '@mui/material/colors';
+import { HomePageProps } from '../types/props.ts';
 
 const drawerWidth = 200; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
@@ -119,7 +120,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     width: '100%',
   },
 }));
-const DashboardHome=()=> {
+const Dashboard=({path}:HomePageProps)=> {
   const theme = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
@@ -272,13 +273,13 @@ const DashboardHome=()=> {
       <Box component="main" sx={{ flexGrow: 1, p: 1.5, marginTop: '0px',alignContent: "center" }}>
         <DrawerHeader />
         {(() => {
-        switch (location.pathname) {
+        switch (path) {
           case '/videolist':
-            return <VideoList drawerOpenStatus={open} />; // Render VideoList for "/videolist" route
+            return <VideoList drawerOpenStatus={open} isVerticalList={false} />; // Render VideoList for "/videolist" route
           case '/videoview':
             return <VideoViewPage drawerOpenStatus={open} video={""}  />; // Render VideoViewPage for "/videoview" route
           default:
-            return <div>Welcome to the Dashboard</div>; // Default view (could be the Dashboard or any fallback)
+            return <Box>Welcome to the Dashboard</Box>; // Default view (could be the Dashboard or any fallback)
         }
       })()}
       </Box>
@@ -286,4 +287,5 @@ const DashboardHome=()=> {
   );
 }
 
-export default DashboardHome;
+export default Dashboard;
+//switch (location.pathname)

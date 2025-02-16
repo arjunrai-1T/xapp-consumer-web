@@ -11,8 +11,6 @@ import {
   Box,
   Avatar,
 } from "@mui/material";
-import VideoPlayer from "./VideoPlayer.tsx";
-import { wrap } from "module";
 import AppleIcon from '@mui/icons-material/Apple';
 import { green } from "@mui/material/colors";
 
@@ -78,12 +76,17 @@ const videos: Video[] = [
   }
 ];
 
-const VideoList = ({ drawerOpenStatus }) => {
+interface VideoListProps{
+  drawerOpenStatus: boolean;
+  isVerticalList: boolean;
+}
+
+const VideoList = ({ drawerOpenStatus,isVerticalList }:VideoListProps) => {
   return (
   
       <Grid2
         container
-        spacing={drawerOpenStatus? 4.5:2.5}
+        spacing={isVerticalList ? (drawerOpenStatus ? 0.2 :  0.1) : (drawerOpenStatus ? 4.5:2.5) }
         sx={{
           justifyContent: 'flex-start',
           alignItems: 'center'
@@ -96,37 +99,40 @@ const VideoList = ({ drawerOpenStatus }) => {
             sx={{
               display: 'flex',
               justifyContent: 'flex-start',
-              mb: 2, // Add margin bottom for spacing between cards
+              mb: 0.5, // Add margin bottom for spacing between cards
             }}
           >
             <ListItem disablePadding sx={{ width: '100%' }}>
-              <Card sx={{ width: drawerOpenStatus ? 400 : 339 , backgroundColor: 'transparent', boxShadow: 'none'}}>
-                <CardActionArea>
+              <Card sx={{ width: "100%", backgroundColor: 'transparent', boxShadow: 'none'}}>
+
+                <CardActionArea sx={{ width: "100%",display: "flex",flexDirection: isVerticalList ? "row" : "column",justifyContent: "space-between",gap: isVerticalList ? 0.4 : 0, }}>
+
                   <CardMedia
                     component="img"
                     sx={{
-                      width: drawerOpenStatus ? 400 : 339, // Change width depending on the drawer state
-                      height: drawerOpenStatus ? 230 : 200, // Change height depending on the drawer state
+                      width: drawerOpenStatus ? (isVerticalList ? 168 : 400) : (isVerticalList ? 168 : 339), // Change width depending on the drawer state
+                      height: drawerOpenStatus ? (isVerticalList ? 94 : 230) : (isVerticalList ? 94 : 200) , // Change height depending on the drawer state
                       transition: 'all 0.3s ease', // Smooth transition when resizing
                     }}
                     image={video.thumbnail}
                     alt={video.title}
                   />
                   
-                  <CardContent sx={{ padding: 0.8 }}>
-                    <Grid2 container alignItems="flex-start" spacing={1.5} justifyContent="flex-start" direction="row" flexWrap={"nowrap"}>
-                      <Grid2 sx={{ flexShrink: 0,marginTop: 0.5 }}>
-                        <Avatar sx={{ bgcolor: green[500],width: 30 ,height: 30 }} variant="rounded">
-                          <AppleIcon />
-                        </Avatar>
-                      </Grid2>
+                  <CardContent sx={{ padding: 0.8 ,width: "100%"}}>
+                    <Grid2 container alignItems="flex-start" spacing={1.5} justifyContent="flex-start" direction="row" flexWrap={"nowrap"}>     
+                      {!isVerticalList && (
+                        <Grid2 sx={{ flexShrink: 0, marginTop: 0.5 }}>
+                          <Avatar sx={{ bgcolor: green[500], width: 30, height: 30 }} variant="rounded">
+                            <AppleIcon />
+                          </Avatar>
+                        </Grid2>
+                      )}
                       <Grid2 sx={{ flexGrow: 0 }} container direction="column" alignItems="flex-start" spacing={0} justifyContent="flex-start" gap={0}>
                           <Typography 
                               variant="body1" 
                               fontWeight={"bold"}
                               fontSize={14}
                               flexWrap={"wrap"}
-                              //dangerouslySetInnerHTML={{ __html: "Mujib Bahini’s Weapon Training Begins |<br> Bangladesh on the Brink of Civil War" }}
                             >
                               {"Mujib Bahini’s Weapon Training Begins |"}
                             </Typography>
@@ -149,6 +155,7 @@ const VideoList = ({ drawerOpenStatus }) => {
                   </CardContent>
 
                 </CardActionArea>
+
               </Card>
             </ListItem>
           </Grid2>
@@ -158,6 +165,9 @@ const VideoList = ({ drawerOpenStatus }) => {
 };
 
 export default VideoList;
+//height: drawerOpenStatus ? 230 : 200,
+//<Card sx={{ width: drawerOpenStatus ? (isVerticalList ? 168 : 400) : (isVerticalList ? 402 : 339) , backgroundColor: 'transparent', boxShadow: 'none'}}>
+//drawerOpenStatus? 4.5:2.5
 
 
 
