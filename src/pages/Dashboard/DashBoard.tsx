@@ -37,6 +37,11 @@ import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { blue, red, yellow } from '@mui/material/colors';
 import { HomePageProps } from '../types/props.ts';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import SignIn from '../Signin/SignIn.tsx';
+import SignInSide from '../sign-in-side/SignInSide.tsx';
 
 const drawerWidth = 200; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
@@ -242,7 +247,7 @@ const Dashboard=({path}:HomePageProps)=> {
         </DrawerHeader>
         <Divider />
         <List>
-          {['DashBoard', 'Video List', 'Video Solo', 'Channel'].map((text) => (
+          {['DashBoard', 'Video List', 'Video Solo', 'Channel','Signin'].map((text) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton sx={{ minHeight: 48, px: 2.5, justifyContent: open ? 'initial' : 'center' }} onClick={() => handleClickDrawerIcon(text)}>
                 <ListItemIcon sx={{ minWidth: 0, justifyContent: 'center', mr: open ? 3 : 'auto' }}>
@@ -256,6 +261,8 @@ const Dashboard=({path}:HomePageProps)=> {
                           return <OndemandVideoIcon  sx={{ color: yellow[500] }}/>; 
                       case 'Channel':
                             return <VideoCameraFrontIcon  sx={{ color: blue[500] }}/>; 
+                      case 'Signin':
+                              return <LoginIcon  sx={{ color: blue[500] }}/>; 
                       default:
                        break;
                     }
@@ -288,4 +295,3 @@ const Dashboard=({path}:HomePageProps)=> {
 }
 
 export default Dashboard;
-//switch (location.pathname)

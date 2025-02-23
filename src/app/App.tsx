@@ -5,6 +5,7 @@ import VideoList from '../components/VideoCard/VideoList.tsx';
 import VideoViewPage from '../pages/VideoSoloView/VideoViewPage.tsx';
 import { Box, Button } from '@mui/material';
 import HomePage from '../pages/Home/HomePage.tsx';
+import SignInSide from '../pages/sign-in-side/SignInSide.tsx';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
@@ -24,6 +25,10 @@ const App: React.FC = () => {
         <Route
           path="/videoview"
           element={isLoggedIn ? <HomePage path="/videoview" /> : <Navigate to="/signin" />}
+        />
+        <Route
+          path="/signin"
+          element={ <SignInSide disableCustomTheme={false} /> }
         />
         
         {/* SignIn route for non-logged-in users */}
