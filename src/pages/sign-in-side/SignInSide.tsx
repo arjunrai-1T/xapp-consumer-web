@@ -30,9 +30,7 @@ export default function SignInSide(props: { disableCustomTheme?: boolean }) {
               position: 'absolute',
               zIndex: -1,
               inset: 0,
-              //  backgroundImage:
-              //   'radial-gradient(ellipse at 50% 50%, hsl(235, 100.00%, 50.00%), hsl(235, 100.00%, 50.00%))',
-              backgroundImage: 'linear-gradient(45deg, #FF3D00 0%, #FF3D00 25%, #FFC107 25%, #FFC107 50%, #4CAF50 50%, #4CAF50 75%, #FF5722 75%, #FF5722 100%)',
+              backgroundImage: 'linear-gradient(45deg, rgba(255, 61, 0, 0.7) 0%, rgba(255, 61, 0, 0.7) 25%, rgba(255, 193, 7, 0.7) 25%, rgba(255, 193, 7, 0.7) 50%, rgba(76, 175, 80, 0.7) 50%, rgba(76, 175, 80, 0.7) 75%, rgba(255, 87, 34, 0.7) 75%, rgba(255, 87, 34, 0.7) 100%)',
               backgroundRepeat: 'no-repeat',
               ...theme.applyStyles('dark', {
                 backgroundImage:

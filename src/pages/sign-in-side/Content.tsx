@@ -59,7 +59,7 @@ const FlikTapeIcon = ({ width = '100%', height = '80vh' }) => {
 export default function Content() {
   return (
     <Stack
-      sx={{ flexDirection: 'column', alignSelf: 'flex-start', gap: 4, maxWidth: 800,p: 2 }}
+      sx={{ flexDirection: 'column', alignSelf: 'flex-start', gap: 4, maxWidth: 1000,p: 2 }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
         {/* <SitemarkIcon /> */}

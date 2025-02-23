@@ -118,6 +118,7 @@ export function GoogleIcon() {
     </SvgIcon>
   );
 }
+
 export function FlikTapeLogo () {
   return (
     <svg
