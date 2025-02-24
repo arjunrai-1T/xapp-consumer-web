@@ -6,14 +6,31 @@ import Content from './Content.tsx';
 import Box from '@mui/material/Box/Box';
 // import AppTheme from '../shared-theme/AppTheme';
 // import ColorModeSelect from '../shared-theme/ColorModeSelect';
-
 import flikTapeImage from "../../assets/images/FlikTape.webp";
+import flikTapeVHSImage from "../../assets/images/VHS.webp";
 
 const FlikTapeIcon = ({ width = '90%', height = '100%' }) => {
   return (
     <Box
       component="img"
       src={flikTapeImage} // Ensure the image is inside the public folder
+      alt="FlikTape"
+      sx={{
+        width: width,
+        height: height,
+        objectFit: "cover",
+        borderRadius: "8px",
+        boxShadow: 0,
+      }}
+    />
+  );
+};
+
+const FlikTapeVHSIcon = ({ width = '90%', height = '100%' }) => {
+  return (
+    <Box
+      component="img"
+      src={flikTapeVHSImage} // Ensure the image is inside the public folder
       alt="FlikTape"
       sx={{
         width: width,
@@ -35,8 +52,9 @@ export default function SignInSide(props: { disableCustomTheme?: boolean }) {
               p: { xs: 2, sm: 4, md: 1 }, // Padding applied to the wrapper
               boxSizing: 'border-box', // Ensures padding doesn't affect width
               overflow: 'hidden',
-              //backgroundColor: 'hsl(0, 0%, 95%)',
               backgroundColor: 'hsl(0, 0%, 0%)',
+              backgroundRepeat: 'no-repeat',
+              //backgroundImage: 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))'
             }}
           >
             <Stack
@@ -53,6 +71,7 @@ export default function SignInSide(props: { disableCustomTheme?: boolean }) {
             >
                 <Box sx={{ flex: { xs: 1, md: 8 }, display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', width: '100vw',padding:2,overflow: 'hidden' }}>
                   <FlikTapeIcon />
+                  {/* <FlikTapeVHSIcon/> */}
                 </Box>
                 <Box sx={{ flex: { xs: 1, md: 4 }, display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch',width: '100vw' }}>
                   <SignInCard />

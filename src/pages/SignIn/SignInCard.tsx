@@ -10,14 +10,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-
 import { styled } from '@mui/material/styles';
-
 import ForgotPassword from './ForgotPassword.tsx';
 import { GoogleIcon, FacebookIcon, SitemarkIcon, FlikTapeLogo } from './CustomIcons.tsx';
 import { SvgIcon } from '@mui/material';
-
 import flikTapeLogoImage from "../../assets/images/FliktapeLogo.webp";
+
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -107,23 +105,24 @@ export default function SignInCard() {
         gap: 1,
     }}>
         <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '16vh',
+            width: '100%',
+          }}
+        >
+          <Box
+            component="img"
+            src={flikTapeLogoImage}
+            alt="FlikTapeLogo"
             sx={{
-              display: { xs: 'flex', md: 'block' },
-              justifyContent: { xs: 'center', md: 'initial' },
-              height: 200,
+              width: '50%',
+              aspectRatio: '1 / 1', // Maintain square aspect ratio
+              objectFit: 'contain', // Prevents cropping
             }}
-          >
-            <Box
-              component="img"
-              src={flikTapeLogoImage}
-              alt="FlikTapeLogo"
-              sx={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                margin: { xs: 0, md: '0 auto' }, // centers in block display
-              }}
-            />
+          />
         </Box>
 
         <Box

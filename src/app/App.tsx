@@ -5,8 +5,9 @@ import VideoList from '../components/VideoCard/VideoList.tsx';
 import VideoViewPage from '../pages/VideoSoloView/VideoViewPage.tsx';
 import { Box, Button, CssBaseline, ThemeProvider } from '@mui/material';
 import HomePage from '../pages/Home/HomePage.tsx';
-import SignInSide from '../pages/sign-in-side/SignInSide.tsx';
 import theme from '../theme/theme.ts';
+import SignInSide from '../pages/SignIn/SignInSide.tsx';
+import SignUp from '../pages/SignUp/SignUp.tsx';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
@@ -32,6 +33,10 @@ const App: React.FC = () => {
           <Route
             path="/signin"
             element={ <SignInSide disableCustomTheme={false} /> }
+          />
+          <Route
+            path="/signup"
+            element={ <SignUp disableCustomTheme={false} /> }
           />
           
           {/* SignIn route for non-logged-in users */}
