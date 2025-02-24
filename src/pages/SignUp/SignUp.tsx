@@ -273,7 +273,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
           boxShadow: 3,
         }}
       >
-        <Box
+        {/* <Box
         sx={{
           display: 'flex',
           justifyContent: 'center',
@@ -293,7 +293,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
               objectFit: 'contain', // Prevents cropping
             }}
           />
-        </Box>
+        </Box> */}
         <CardContent>
           <Typography variant="h5" fontWeight="bold" textAlign="center">
             Create a new account
@@ -338,7 +338,8 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
             <RadioGroup row defaultValue="female">
               <FormControlLabel value="female" control={<Radio />} label="Female" />
               <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel value="custom" control={<Radio />} label="Other" />
+              <FormControlLabel value="transgender" control={<Radio />} label="Transgender" />
+              <FormControlLabel value="other" control={<Radio />} label="Other" />
             </RadioGroup>
           </FormControl>
   
@@ -381,8 +382,32 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
               width: '100%', // Full screen width
             }}
           >
-              <Box sx={{ flex: { xs: 1, md: 7 }, display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', width: '100vw',padding:2,overflow: 'hidden' }}>
-                <FlikTapeVHSIcon/>
+              <Box sx={{ flex: { xs: 1, md: 3 }, display: 'flex', flexDirection:'column',justifyContent: 'center', alignItems: 'center', width: '100vw',padding:1,overflow: 'hidden' }}>
+                    <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          width: '60%',
+                          maxHeight: '26vh'
+                        }}
+                      >
+                          <Box
+                            component="img"
+                            src={flikTapeLogoImage}
+                            alt="FlikTapeLogo"
+                            sx={{
+                              width: '100%',
+                              aspectRatio: '1 / 1', // Maintain square aspect ratio
+                              objectFit: 'cover', // Prevents cropping
+                            }}
+                          />
+                    </Box>
+                    <Box>
+                      <Typography variant="h5" textAlign="center">
+                          Unleash Your Voice: Share, Discover, and Connect on Your Next Favorite Video Platform!
+                      </Typography>
+                    </Box>
               </Box>
               <Box sx={{ flex: { xs: 1, md: 5 }, display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch',width: '100vw' }}>
                 <SignUpCardNew />
