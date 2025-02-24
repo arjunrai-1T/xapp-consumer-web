@@ -7,65 +7,57 @@ import Box from '@mui/material/Box/Box';
 // import AppTheme from '../shared-theme/AppTheme';
 // import ColorModeSelect from '../shared-theme/ColorModeSelect';
 
+import flikTapeImage from "../../assets/images/FlikTape.webp";
+
+const FlikTapeIcon = ({ width = '90%', height = '100%' }) => {
+  return (
+    <Box
+      component="img"
+      src={flikTapeImage} // Ensure the image is inside the public folder
+      alt="FlikTape"
+      sx={{
+        width: width,
+        height: height,
+        objectFit: "cover",
+        borderRadius: "8px",
+        boxShadow: 0,
+      }}
+    />
+  );
+};
+
 export default function SignInSide(props: { disableCustomTheme?: boolean }) {
   return (
-    // <AppTheme {...props}>
-    //   <CssBaseline enableColorScheme />
-    //   <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
-      <Stack
-        direction="column"
-        component="main"
-        sx={[
-          {
-            justifyContent: 'flex-start',
-            alignItems: 'space-evenly',
-            height: 'calc((1 - var(--template-frame-height, 0)) * 100%)',
-            marginTop: 'max(40px - var(--template-frame-height, 0px), 0px)',
-            minHeight: '100%',
-          },
-          (theme) => ({
-            '&::before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              zIndex: -1,
-              inset: 0,
-              backgroundImage: 'linear-gradient(45deg, rgba(255, 61, 0, 0.7) 0%, rgba(255, 61, 0, 0.7) 25%, rgba(255, 193, 7, 0.7) 25%, rgba(255, 193, 7, 0.7) 50%, rgba(76, 175, 80, 0.7) 50%, rgba(76, 175, 80, 0.7) 75%, rgba(255, 87, 34, 0.7) 75%, rgba(255, 87, 34, 0.7) 100%)',
-              backgroundRepeat: 'no-repeat',
-              ...theme.applyStyles('dark', {
-                backgroundImage:
-                  'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-              }),
-            },
-          }),
-        ]}
-      >
-        {/* <Stack
-          direction={{ xs: 'column-reverse', md: 'row' }}
-          sx={{
-            justifyContent: 'space-evenly',
-            gap: { xs: 6, sm: 12 },
-            p: 2,
-            m: 0
-          }}
-        > */}
-
-          <Stack
-            direction={{ xs: 'column-reverse', md: 'row' }}
+        <Box
             sx={{
-              justifyContent: 'space-around',
-              gap: { xs: 6, sm: 12 },
-              p: { xs: 2, sm: 4 },
-              m: 0,
+              height: '100vh', // Full screen height
+              width: '100vw', // Full screen width
+              p: { xs: 2, sm: 4, md: 1 }, // Padding applied to the wrapper
+              boxSizing: 'border-box', // Ensures padding doesn't affect width
+              overflow: 'hidden',
+              //backgroundColor: 'hsl(0, 0%, 95%)',
+              backgroundColor: 'hsl(0, 0%, 0%)',
             }}
           >
-            <Content />
-            <SignInCard />
-          </Stack>
-
-{/* 
-         </Stack> */}
-       </Stack>
-    // </AppTheme>
+            <Stack
+              direction={{ xs: 'column-reverse', md: 'row' }}
+              component="main"
+              sx={{
+                justifyContent: 'flex-start',
+                gap: { xs: 6, sm: 12,md:1 },
+                p: { xs: 2, sm: 4, md: 0 },
+                m: 0,
+                height: '100%', // Full screen height
+                width: '100%', // Full screen width
+              }}
+            >
+                <Box sx={{ flex: { xs: 1, md: 8 }, display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch', width: '100vw',padding:2,overflow: 'hidden' }}>
+                  <FlikTapeIcon />
+                </Box>
+                <Box sx={{ flex: { xs: 1, md: 4 }, display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch',width: '100vw' }}>
+                  <SignInCard />
+                </Box>
+            </Stack>
+        </Box>
   );
 }

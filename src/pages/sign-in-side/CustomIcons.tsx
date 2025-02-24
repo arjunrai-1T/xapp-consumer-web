@@ -121,73 +121,21 @@ export function GoogleIcon() {
 
 export function FlikTapeLogo () {
   return (
+    <SvgIcon sx={{ width: 50, height: 30 }}>
     <svg
-      width="400"
-      height="250"
-      viewBox="0 0 400 250"
+      width="100%"
+      height="100%"
+      viewBox="0 0 64 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Background */}
-      <rect width="400" height="250" fill="white" />
-
-      {/* Color Stripes */}
-      <rect x="0" y="0" width="60" height="250" fill="#E63946" />
-      <rect x="60" y="0" width="60" height="250" fill="#F4A261" />
-      <rect x="120" y="0" width="60" height="250" fill="#E9C46A" />
-      <rect x="180" y="0" width="60" height="250" fill="#2A9D8F" />
-      <rect x="240" y="0" width="60" height="250" fill="#264653" />
-
-      {/* VHS Cassette Shape */}
-      <rect
-        x="50"
-        y="60"
-        width="300"
-        height="130"
-        rx="10"
-        ry="10"
-        fill="#C4C4C4"
-        stroke="black"
-        strokeWidth="3"
-      />
-      
-      {/* Tape Reels */}
-      <circle cx="110" cy="125" r="30" fill="black" stroke="white" strokeWidth="5" />
-      <circle cx="290" cy="125" r="30" fill="black" stroke="white" strokeWidth="5" />
-
-      {/* FlikTape Text */}
-      <text
-        x="140"
-        y="115"
-        fontFamily="Arial, sans-serif"
-        fontSize="28"
-        fontWeight="bold"
-        fill="black"
-      >
-        FlikTape
-      </text>
-
-      {/* Your Own Video Library Text */}
-      <text
-        x="135"
-        y="140"
-        fontFamily="Arial, sans-serif"
-        fontSize="14"
-        fill="black"
-      >
-        Your Own Video Library
-      </text>
-
-      {/* Video Cassette Label */}
-      <text
-        x="150"
-        y="165"
-        fontFamily="Arial, sans-serif"
-        fontSize="12"
-        fill="black"
-      >
-        VIDEO CASSETTE
-      </text>
+      <rect x="2" y="6" width="60" height="20" rx="3" fill="#333" stroke="#000" strokeWidth="2"/>
+      <circle cx="16" cy="16" r="5" fill="#999" stroke="#000" strokeWidth="2"/>
+      <circle cx="48" cy="16" r="5" fill="#999" stroke="#000" strokeWidth="2"/>
+      <circle cx="16" cy="16" r="2" fill="#000"/>
+      <circle cx="48" cy="16" r="2" fill="#000"/>
+      <rect x="22" y="14" width="20" height="4" fill="#666"/>
     </svg>
+  </SvgIcon>
   );
 };

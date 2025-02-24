@@ -39,7 +39,7 @@ const items = [
   // },
 ];
 
-const FlikTapeIcon = ({ width = '100%', height = '80vh' }) => {
+const FlikTapeIcon = ({ width = '100%', height = '100vh' }) => {
   return (
     <Box
       component="img"
@@ -59,10 +59,9 @@ const FlikTapeIcon = ({ width = '100%', height = '80vh' }) => {
 export default function Content() {
   return (
     <Stack
-      sx={{ flexDirection: 'column', alignSelf: 'flex-start', gap: 4, maxWidth: 1000,p: 2 }}
+      sx={{ flexDirection: 'column', alignSelf: 'flex-start',gap: 4,p: 0 }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-        {/* <SitemarkIcon /> */}
         <FlikTapeIcon />
       </Box>
       {/* {items.map((item, index) => (

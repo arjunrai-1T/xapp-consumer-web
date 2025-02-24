@@ -14,7 +14,10 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
 import ForgotPassword from './ForgotPassword.tsx';
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons.tsx';
+import { GoogleIcon, FacebookIcon, SitemarkIcon, FlikTapeLogo } from './CustomIcons.tsx';
+import { SvgIcon } from '@mui/material';
+
+import flikTapeLogoImage from "../../assets/images/FliktapeLogo.webp";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -89,108 +92,152 @@ export default function SignInCard() {
   };
 
   return (
-    <Card variant="outlined">
-      <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-        <SitemarkIcon />
-      </Box>
-      <Typography
-        component="h1"
-        variant="h4"
-        sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
-      >
-        Sign in
-      </Typography>
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        noValidate
-        sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
-      >
-        <FormControl>
-          <FormLabel htmlFor="email">Email</FormLabel>
-          <TextField
-            error={emailError}
-            helperText={emailErrorMessage}
-            id="email"
-            type="email"
-            name="email"
-            placeholder="your@email.com"
-            autoComplete="email"
-            autoFocus
-            required
-            fullWidth
-            variant="outlined"
-            color={emailError ? 'error' : 'primary'}
-          />
-        </FormControl>
-        <FormControl>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <FormLabel htmlFor="password">Password</FormLabel>
+    <Box 
+      sx={{
+        width: '90%', 
+        display: 'flex', 
+        justifyContent: 'center' // Centers the card
+      }}
+    >
+      <Card variant="outlined" 
+      sx={{ 
+        width: '100%',  // Default full width
+        maxWidth: '400px', // Set max width
+        padding: 3, // Padding for spacing
+        gap: 1,
+    }}>
+        <Box
+            sx={{
+              display: { xs: 'flex', md: 'block' },
+              justifyContent: { xs: 'center', md: 'initial' },
+              height: 200,
+            }}
+          >
+            <Box
+              component="img"
+              src={flikTapeLogoImage}
+              alt="FlikTapeLogo"
+              sx={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                margin: { xs: 0, md: '0 auto' }, // centers in block display
+              }}
+            />
+        </Box>
+
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
+        >
+          <FormControl>
+            <TextField
+              error={emailError}
+              helperText={emailErrorMessage}
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Email address or Phone Number"
+              autoComplete="email"
+              autoFocus
+              required
+              fullWidth
+              variant="outlined"
+              color={emailError ? 'error' : 'primary'}
+            />
+          </FormControl>
+          <FormControl>
+            <TextField
+              error={passwordError}
+              helperText={passwordErrorMessage}
+              name="password"
+              placeholder="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              autoFocus
+              required
+              fullWidth
+              variant="outlined"
+              color={passwordError ? 'error' : 'primary'}
+            />
+          </FormControl>
+          {/* <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          /> */}
+          <ForgotPassword open={open} handleClose={handleClose} />
+          <Button type="submit" fullWidth variant="contained" onClick={validateInputs} sx={{width: '100%',height: 55,textTransform: 'none'}}>
+              <Typography sx={{ textAlign: 'center' }}>Log in</Typography>
+          </Button>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Link
               component="button"
               type="button"
               onClick={handleClickOpen}
               variant="body2"
-              sx={{ alignSelf: 'baseline' }}
+              sx={{ 
+                alignSelf: 'center', // Centers vertically
+                textDecoration: 'none', // No underline by default
+                color: 'hsl(220, 90%, 55%)', // HSL blue color
+                cursor: 'pointer', // Change mouse to hand
+                '&:hover': {
+                  textDecoration: 'underline', // Add underline on hover
+                }
+              }}
             >
-              Forgot your password?
+              Forgotten password?
             </Link>
           </Box>
-          <TextField
-            error={passwordError}
-            helperText={passwordErrorMessage}
-            name="password"
-            placeholder="••••••"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            autoFocus
-            required
+          {/* <Typography sx={{ textAlign: 'center' }}>
+            Forgot account?{' '}
+            <span>
+              <Link
+                href="/material-ui/getting-started/templates/sign-in/"
+                variant="body2"
+                sx={{ alignSelf: 'center' }}
+              >
+                Sign up
+              </Link>
+            </span>
+          </Typography> */}
+        </Box>
+
+        <Divider/>
+        
+        <Box sx={{ 
+           display: 'flex', 
+           alignItems: 'center',
+           justifyContent: 'center', gap: 2 }}>
+          <Button
+            sx={{width: 200,height: 40,backgroundColor: 'hsl(108, 63%, 44%)', textTransform: 'none',color: 'white'}}
             fullWidth
             variant="outlined"
-            color={passwordError ? 'error' : 'primary'}
-          />
-        </FormControl>
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        />
-        <ForgotPassword open={open} handleClose={handleClose} />
-        <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
-          Sign in
-        </Button>
-        <Typography sx={{ textAlign: 'center' }}>
-          Don&apos;t have an account?{' '}
-          <span>
-            <Link
-              href="/material-ui/getting-started/templates/sign-in/"
-              variant="body2"
-              sx={{ alignSelf: 'center' }}
-            >
-              Sign up
-            </Link>
-          </span>
-        </Typography>
-      </Box>
-      <Divider>or</Divider>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <Button
-          fullWidth
-          variant="outlined"
-          onClick={() => alert('Sign in with Google')}
-          startIcon={<GoogleIcon />}
-        >
-          Sign in with Google
-        </Button>
-        <Button
-          fullWidth
-          variant="outlined"
-          onClick={() => alert('Sign in with Facebook')}
-          startIcon={<FacebookIcon />}
-        >
-          Sign in with Facebook
-        </Button>
-      </Box>
-    </Card>
+            onClick={() => alert('Sign in with Google')}
+            // startIcon={<GoogleIcon />}
+          >
+            <Typography sx={{ textAlign: 'center' }}>Create new account</Typography> 
+          </Button>
+          {/* <Button
+            fullWidth
+            variant="outlined"
+            onClick={() => alert('Sign in with Google')}
+            startIcon={<GoogleIcon />}
+          >
+            Sign in with Google
+          </Button>
+          <Button
+            fullWidth
+            variant="outlined"
+            onClick={() => alert('Sign in with Facebook')}
+            startIcon={<FacebookIcon />}
+          >
+            Sign in with Facebook
+          </Button> */}
+        </Box>
+      </Card>
+    </Box>
   );
 }
