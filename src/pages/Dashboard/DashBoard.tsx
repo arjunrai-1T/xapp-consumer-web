@@ -125,6 +125,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     width: '100%',
   },
 }));
+
 const Dashboard=({path}:HomePageProps)=> {
   const theme = useTheme();
   const location = useLocation();

@@ -19,6 +19,7 @@ import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons.tsx';
 import flikTapeLogoImage from "../../assets/images/FliktapeLogo.webp";
 import flikTapeVHSImage from "../../assets/images/VHS.webp";
 import { CardContent, MenuItem, Radio, RadioGroup, Select } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -88,6 +89,11 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+  const navigate = useNavigate();
+
+  const maxImageHeight = '30vh';
+  const maxCardWidth=2000;
+  const minCardWidth=550;
 
   const validateInputs = () => {
     const email = document.getElementById('email') as HTMLInputElement;
@@ -261,14 +267,19 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
     )
   }
 
+  const onClickLogin=(event: React.MouseEvent<HTMLButtonElement>)=>{
+       navigate("/signin");
+  };
+
   const SignUpCardNew = () => {
     return (
       <Card
         sx={{
-          maxWidth: 800,
+          maxWidth: maxCardWidth,
+          minWidth: minCardWidth,
           width: '100%',
-          margin: "auto",
-          padding: 1,
+          margin: 10,
+          padding: 0,
           borderRadius: 3,
           boxShadow: 3,
         }}
@@ -346,12 +357,12 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
           <TextField fullWidth placeholder="Mobile number or email" sx={{ mt: 2 }} />
           <TextField fullWidth placeholder="New password" type="password" sx={{ mt: 2 }} />
   
-          <Button variant="contained" fullWidth sx={{ mt: 2, bgcolor: "green" }}>
-            Sign Up
+          <Button variant="contained" fullWidth sx={{ mt: 2, bgcolor: "green",width: '100%',height: '8vh' }}>
+            <Typography textAlign="center" sx={{textTransform:'none' }}>Sign Up</Typography>
           </Button>
   
           <Typography textAlign="center" sx={{ mt: 2 }}>
-            <a href="#">Already have an account?</a>
+            <Button onClick={onClickLogin} sx={{textTransform:'none'}}>Already have an account?</Button>
           </Typography>
         </CardContent>
       </Card>
@@ -374,7 +385,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
             direction={{ xs: 'column-reverse', md: 'row' }}
             component="main"
             sx={{
-              justifyContent: 'flex-start',
+              justifyContent: 'space-around',
               gap: { xs: 6, sm: 12,md:4 },
               p: { xs: 2, sm: 4, md: 0 },
               m: 0,
@@ -382,14 +393,18 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
               width: '100%', // Full screen width
             }}
           >
-              <Box sx={{ flex: { xs: 1, md: 3 }, display: 'flex', flexDirection:'column',justifyContent: 'center', alignItems: 'center', width: '100vw',padding:1,overflow: 'hidden' }}>
+              <Box sx={{ flex: { xs: 1, md: 5 }, display: 'flex', flexDirection:'column',justifyContent: 'center', alignItems: 'center', gap: 0.2, width: '100vw',padding:1,overflow: 'hidden' }}>
                     <Box
                         sx={{
                           display: 'flex',
                           justifyContent: 'center',
                           alignItems: 'center',
-                          width: '60%',
-                          maxHeight: '26vh'
+                          width: '100%',
+                          height: '100%',
+                          maxHeight: maxImageHeight, // Limit the height to 20vh (as per the container)
+                          maxWidth: '100%', // Ensure the width doesn’t go beyond container width
+                          overflow: 'hidden',
+                          p: 0
                         }}
                       >
                           <Box
@@ -398,8 +413,11 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
                             alt="FlikTapeLogo"
                             sx={{
                               width: '100%',
+                              height: '100%',
+                              maxWidth: '100%',
+                              maxHeight: maxImageHeight,
                               aspectRatio: '1 / 1', // Maintain square aspect ratio
-                              objectFit: 'cover', // Prevents cropping
+                              objectFit: 'contain', // Prevents cropping
                             }}
                           />
                     </Box>
@@ -409,7 +427,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
                       </Typography>
                     </Box>
               </Box>
-              <Box sx={{ flex: { xs: 1, md: 5 }, display: 'flex', justifyContent: 'flex-start', alignItems: 'stretch',width: '100vw' }}>
+              <Box sx={{ flex: { xs: 1, md: 7 }, display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch',width: '100vw' }}>
                 <SignUpCardNew />
               </Box>
           </Stack>

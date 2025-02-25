@@ -15,6 +15,7 @@ import ForgotPassword from './ForgotPassword.tsx';
 import { GoogleIcon, FacebookIcon, SitemarkIcon, FlikTapeLogo } from './CustomIcons.tsx';
 import { SvgIcon } from '@mui/material';
 import flikTapeLogoImage from "../../assets/images/FliktapeLogo.webp";
+import { useNavigate } from 'react-router-dom';
 
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -41,6 +42,7 @@ export default function SignInCard() {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -89,6 +91,10 @@ export default function SignInCard() {
     return isValid;
   };
 
+  const onClickOpenNewAccount=(event: React.MouseEvent<HTMLButtonElement>)=>{
+      navigate('/signup'); 
+  };
+
   return (
     <Box 
       sx={{
@@ -104,7 +110,7 @@ export default function SignInCard() {
         padding: 3, // Padding for spacing
         gap: 1,
     }}>
-        <Box
+        {/* <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -123,7 +129,7 @@ export default function SignInCard() {
               objectFit: 'contain', // Prevents cropping
             }}
           />
-        </Box>
+        </Box> */}
 
         <Box
           component="form"
@@ -214,7 +220,7 @@ export default function SignInCard() {
             sx={{width: 200,height: 40,backgroundColor: 'hsl(108, 63%, 44%)', textTransform: 'none',color: 'white'}}
             fullWidth
             variant="outlined"
-            onClick={() => alert('Sign in with Google')}
+            onClick={onClickOpenNewAccount}
             // startIcon={<GoogleIcon />}
           >
             <Typography sx={{ textAlign: 'center' }}>Create new account</Typography> 
