@@ -20,6 +20,10 @@ import flikTapeLogoImage from "../../assets/images/FliktapeLogo.webp";
 import flikTapeVHSImage from "../../assets/images/VHS.webp";
 import { CardContent, MenuItem, Radio, RadioGroup, Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import dayjs from 'dayjs';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -271,6 +275,15 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
        navigate("/signin");
   };
 
+  const [selectedDate, setSelectedDate] = React.useState(null);
+  const [formattedDate, setFormattedDate] = React.useState("");
+  const handleDateChange = (newDate) => {
+    setSelectedDate(newDate);
+    setFormattedDate(dayjs(newDate).format('DD-MM-YYYY') );
+  };
+
+  //const formattedDate = selectedDate ? dayjs(selectedDate).format('DD-MM-YYYY') : '';
+
   const SignUpCardNew = () => {
     return (
       <Card
@@ -317,7 +330,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
   
           <FormControl fullWidth sx={{ mt: 2 }}>
             <FormLabel>Date of birth</FormLabel>
-            <Box sx={{ display: "flex", gap: 1 }}>
+            {/* <Box sx={{ display: "flex", gap: 1 }}>
               <Select defaultValue={24} fullWidth>
                 {[...Array(31).keys()].map((day) => (
                   <MenuItem key={day + 1} value={day + 1}>
@@ -341,7 +354,17 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
                   </MenuItem>
                 ))}
               </Select>
-            </Box>
+            </Box> */}
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Box sx={{ display: "flex", gap: 1 }}>
+                <DatePicker
+                  label={''}
+                  value={selectedDate}
+                  onChange={handleDateChange}
+                  sx={{width: '100%'}}
+                />
+              </Box>
+            </LocalizationProvider>
           </FormControl>
   
           <FormControl fullWidth sx={{ mt: 2 }}>
