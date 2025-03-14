@@ -33,6 +33,22 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import VideoList from "../../components/VideoCard/VideoList.tsx";
 import CommentSection from "../../components/CommentSection/CommentSection.tsx";
+import VideoShortDesc from "../../components/VideoShortDesc/VideoShortDesc.tsx";
+import VideoLongDesc from "../../components/VideoLongDesc/VideoLongDesc.tsx";
+
+const videoData = {
+  views: "34K",
+  uploadedDate: "1 year ago",
+  description: `Your support is absolutely critical to keep this campaign alive. 
+  To support directly UPI No. 9818457947 || Bank transfer - Ac name - Chandrachur Ghose, 
+  Axis Bank, Ac No - 5027720228, IFSC - UTIB0005140||`,
+  shortDescription: "more",
+  likes: 1800,
+  dislikes: 100,
+  channelName: "Chandrachur Ghose",
+  channelSubscribers: "58.4K",
+  channelAvatar: "https://via.placeholder.com/40", // Replace with actual avatar URL
+};
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -293,17 +309,16 @@ const VideoViewPage =({ drawerOpenStatus,video })=>{
           <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ height: '100vh' }}>
              {/*Show Horizontal List of Videos Descriptions & Comments*/}
              <Grid size={{ xs: 2, sm: 4, md: 8 }}>
-                {/* <Card sx={{ width: '100%',height: '100%' ,backgroundColor: 'lightcoral' }}>
+                <Card sx={{ width: '100%' ,backgroundColor: 'white',boxShadow: 'none' }}>
                       <CardContent>
-                        <Typography variant="h5" gutterBottom>
-                          Left Box - Card Container 1
-                        </Typography>
-                        <Typography variant="body1">
-                          This is a card inside the left grid. It spans across the full width of the grid in small screens.
-                        </Typography>
+                        <VideoShortDesc/>
+                        <VideoLongDesc {...videoData} />
+                        <CommentSection />
                       </CardContent>
-                </Card> */}
-                <CommentSection />
+                </Card>
+                {/* <VideoShortDesc/>
+                <VideoLongDesc {...videoData} />
+                <CommentSection /> */}
               </Grid>
               {/*Show Horizontal List of Videos*/}
               <Grid size={{ xs: 2, sm: 4, md: 4 }} padding={1.5} sx={{ width: '100%',height: '100vh' ,backgroundColor: '' }}>
