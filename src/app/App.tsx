@@ -31,6 +31,10 @@ const App: React.FC = () => {
             element={isLoggedIn ? <HomePage path="/videoview" /> : <Navigate to="/signin" />}
           />
           <Route
+            path="/channelview"
+            element={isLoggedIn ? <HomePage path="/channelview" /> : <Navigate to="/signin" />}
+          />
+          <Route
             path="/signin"
             element={ <SignInSide disableCustomTheme={false} /> }
           />

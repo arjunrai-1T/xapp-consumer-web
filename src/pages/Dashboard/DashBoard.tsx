@@ -42,6 +42,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import SignIn from '../Signin/SignIn.tsx';
 import SignInSide from '../sign-in-side/SignInSide.tsx';
+import ChannelView from '../ChannelView/ChannelView.tsx';
 
 const drawerWidth = 200; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
@@ -153,14 +154,17 @@ const Dashboard=({path}:HomePageProps)=> {
     console.log(`You clicked on ${menuname}`);
     switch (menuname) {
       case 'DashBoard':
-        navigate('/'); 
-        break;
+          navigate('/'); 
+          break;
       case 'Video List':
           navigate('/videolist'); 
           break;
       case 'Video Solo':
-            navigate('/videoview'); 
-            break;
+          navigate('/videoview'); 
+          break;
+      case 'Channel':
+          navigate('/channelview'); 
+          break;
       default:
         return; 
     }
@@ -281,11 +285,14 @@ const Dashboard=({path}:HomePageProps)=> {
       <Box component="main" sx={{ flexGrow: 1, p: 1.5, marginTop: '0px',alignContent: "center" }}>
         <DrawerHeader />
         {(() => {
+        console.log(`We get ${path}`)
         switch (path) {
           case '/videolist':
             return <VideoList drawerOpenStatus={open} isVerticalList={false} />; // Render VideoList for "/videolist" route
           case '/videoview':
             return <VideoViewPage drawerOpenStatus={open} video={""}  />; // Render VideoViewPage for "/videoview" route
+          case '/channelview':
+              return <ChannelView channelid={"test"}/>; 
           default:
             return <Box>Welcome to the Dashboard</Box>; // Default view (could be the Dashboard or any fallback)
         }
