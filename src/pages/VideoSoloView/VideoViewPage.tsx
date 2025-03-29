@@ -338,7 +338,7 @@ const VideoViewPage =({ drawerOpenStatus,video })=>{
                           {isFullWidth ? 'Shrink Left Side' : 'Expand Left Side'}
                         </Button>
                   </Box> */}
-                  <VideoList drawerOpenStatus={drawerOpenStatus} isVerticalList={true}/>
+                  <VideoList isVerticalList={true}/>
               </Grid>
           </Grid>
           

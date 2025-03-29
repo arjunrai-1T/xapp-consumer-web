@@ -43,6 +43,7 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import SignIn from '../Signin/SignIn.tsx';
 import SignInSide from '../sign-in-side/SignInSide.tsx';
 import ChannelView from '../ChannelView/ChannelView.tsx';
+import { useDrawer } from '../../context/DrawerContext.ts';
 
 const drawerWidth = 200; // Expanded drawer width
 const miniDrawerWidth = 60; // Collapsed drawer width
@@ -133,6 +134,7 @@ const Dashboard=({path}:HomePageProps)=> {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const { state, dispatch } = useDrawer();
 
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
@@ -146,6 +148,7 @@ const Dashboard=({path}:HomePageProps)=> {
   };
 
   const handleDrawerToggle = () => {
+    dispatch({ type: 'TOGGLE_DRAWER' });
     setOpen(!open); // Toggle drawer state
   };
 
@@ -288,11 +291,11 @@ const Dashboard=({path}:HomePageProps)=> {
         console.log(`We get ${path}`)
         switch (path) {
           case '/videolist':
-            return <VideoList drawerOpenStatus={open} isVerticalList={false} />; // Render VideoList for "/videolist" route
+            return <VideoList isVerticalList={false} />; // Render VideoList for "/videolist" route
           case '/videoview':
             return <VideoViewPage drawerOpenStatus={open} video={""}  />; // Render VideoViewPage for "/videoview" route
           case '/channelview':
-              return <ChannelView channelid={"test"}/>; 
+              return <ChannelView channelId={"Channel Name"} subscribers={"62.1K"} videos={"359"}/>; 
           default:
             return <Box>Welcome to the Dashboard</Box>; // Default view (could be the Dashboard or any fallback)
         }
